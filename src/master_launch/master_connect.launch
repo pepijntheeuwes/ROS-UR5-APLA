@@ -1,0 +1,10 @@
+<launch>
+    <!-- Include launch file 1 -->
+    <include file="$(find ur5_apla/)launch/ur5_apla_with_printhead_bringup.launch"/>
+
+    <!-- Include launch file 2 -->
+    <include file="$(find ur5_apla_moveit_config)/launch/moveit_planning_execution.launch"/>
+
+    <!-- Include launch file 3 -->
+    <include file="$(find ur5_apla_moveit_config)/launch/moveit_rviz.launch"/>
+</launch>

@@ -14,13 +14,13 @@
       <visual>
         <geometry>
           <!-- The path to the visual meshes in the package. This can be the dae variant -->
-          <mesh filename="package://ur5_apla/meshes/printhead/visual/printheadv2.stl"/>
+          <mesh filename="package://ur5_apla/meshes/printhead/visual/printheadv2.dae"/>
         </geometry>
       </visual>
       <collision>
         <geometry>
           <!-- The path to the collision meshes in the package. -->
-          <mesh filename="package://ur5_apla/meshes/printhead/collision/printheadv2.dae"/>
+          <mesh filename="package://ur5_apla/meshes/printhead/collision/printheadv2.stl"/>
         </geometry>
       </collision>
     </link>

@@ -162,14 +162,14 @@ class ToolpathPlanner:
             if not self.movementPlanConsecList[index[0]].trajectory.joint_trajectory.joint_names:
                 self.movementPlanConsecList[index[0]].trajectory.joint_trajectory.joint_names = self.movementPlanList[index[0]][0].trajectory.joint_trajectory.joint_names
             for mvmPlan in self.movementPlanList[index[0]][1:]:
-                local_last_time = None
+                # local_last_time = None
                 for point in mvmPlan.trajectory.joint_trajectory.points:
-                    # if point.time_from_start.to_sec() == 0:
-                    #     point.time_from_start += rospy.Duration(nsecs=1)
-                    if local_last_time == point.time_from_start:
-                        point.time_from_start += rospy.Duration(0, 1)
-                        print('Got a re-occuring time-stamp.')
-                    local_last_time = point.time_from_start
+                    if point.time_from_start.to_sec() == 0:
+                        point.time_from_start += rospy.Duration(nsecs=1)
+                    # if local_last_time == point.time_from_start:
+                    #     point.time_from_start += rospy.Duration(0, 1)
+                    #     print('Got a re-occuring time-stamp.')
+                    # local_last_time = point.time_from_start
                     point.time_from_start += last_time
                 last_time = mvmPlan.trajectory.joint_trajectory.points[-1].time_from_start
                 self.movementPlanConsecList[index[0]].timestamps.append(last_time)

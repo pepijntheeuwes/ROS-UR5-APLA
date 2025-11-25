@@ -78,8 +78,8 @@ if __name__ == '__main__':
 
     # Planning for two points
     pose_goal = geometry_msgs.msg.Pose()
-    pose_goal.position.x = 0.15
-    pose_goal.position.y = 0.15
+    pose_goal.position.x = 0.0
+    pose_goal.position.y = 0.2
     pose_goal.position.z = 0.1
 
     #For world frame
