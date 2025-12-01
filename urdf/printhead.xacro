@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="https://ros.org/wiki/xacro" name="printhead">
+  <!-- Here we define the 2 parameters of the macro -->
+  <xacro:macro name="printhead" params="prefix connected_to">
+    <!-- Create a fixed joint with a parameterized name. -->
+    <joint name="${prefix}printhead_joint" type="fixed">
+      <!-- The parent link must be read from the robot model it is attached to. -->
+      <parent link="${connected_to}"/>
+      <child link="${prefix}printhead"/>
+      <!-- The tool is directly attached to the flange. -->
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+    <link name="${prefix}printhead">
+      <visual>
+        <geometry>
+          <!-- The path to the visual meshes in the package. This can be the dae variant -->
+          <mesh filename="package://ur5_apla/meshes/printhead/visual/printheadv2.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <!-- The path to the collision meshes in the package. -->
+          <mesh filename="package://ur5_apla/meshes/printhead/collision/printheadv2.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- TCP frame -->
+    <!-- TCP is at 0.19515m according to .STL, after measuring appears to be 0.00286m further away, old value with stool-head was 0.19801 -->
+    <!-- TCP is at 0.19515m according to initial .STL, after measuring appears to be 0.00162 further away, modified the .SLDASM so now TCP is at 0.19677-->
+    <joint name="${prefix}tcp_joint" type="fixed">
+      <origin xyz="0 0 0.19677" rpy="0 0 0"/>
+      <parent link="${prefix}printhead"/>
+      <child link="${prefix}tcp"/>
+    </joint>
+    <link name="${prefix}tcp"/>
+
+  </xacro:macro>
+</robot>
